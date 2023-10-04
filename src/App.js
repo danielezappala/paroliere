@@ -1,10 +1,7 @@
-import React, { useCallback, useContext, useReducer, createContext, useEffect, useState } from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
-import Board from './components/board'
 import dice from './data'
-import PrimarySearchAppBar from './components/myAppBar'
-import { Paper, Button, ThemeProvider, Typography, InputBase } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles';
+import { ThemeProvider} from '@material-ui/core'
 import theme from './theme';
 import Ui from './components/ui'
 import GlobalState from './store/globalState'; 

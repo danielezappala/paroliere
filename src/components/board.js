@@ -1,10 +1,7 @@
-import React, { Fragment, useContext } from 'react';
-import Headers from './headers'
+import React from 'react';
 import Row from './row'
-import {Typography, Card} from '@material-ui/core';
 import 'fontsource-roboto';
 import { makeStyles } from '@material-ui/core/styles';
-import { Context } from "../store/globalState"
 
 const useStyles = makeStyles(theme =>({
     board:{

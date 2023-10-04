@@ -1,12 +1,9 @@
-import React, { Component, Fragment, useState, useContext, useGlobal, useEffect} from 'react';
+import React, { Fragment, useState, useContext, useEffect} from 'react';
 import Board from './board'
 import Timer from './timer'
 import PrimarySearchAppBar from './myAppBar'
-import { Button, Card, Typography, Box, InputBase } from '@material-ui/core'
-import dice from "./dice"
-import { Global } from '@emotion/core';
+import { Button, Typography, Box,} from '@material-ui/core'
 import GlobalState from "../store/globalState"
-
 
 
 const Ui = (() => {
@@ -14,7 +11,6 @@ const Ui = (() => {
     const {globalState, globalDispatch} = useContext(GlobalState);
     
     console.log('Global State on UI')
-
    
   useEffect(()=>{
         globalState.rolls = globalState.makeRollDices()

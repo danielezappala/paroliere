@@ -18,6 +18,7 @@
     "react-dom": "^16.14.0",
     "react-hooks-global-state": "^1.0.1",
     "react-scripts": "^3.4.4",
+    "react-token-auth": "^1.1.7",
     "styled-components": "^5.2.0",
     "use-global-state": "^0.1.2",
     "use-sound": "^1.0.2"

@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Card from '@material-ui/core/Card';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -14,10 +13,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
+import LoginIcon from '@material-ui/icons/ExitToApp';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import FullScreenDialog from './fullScreenDialog';
 import GlobalState from "../store/globalState"
+import LoginForm from "./login"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -97,13 +97,22 @@ export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [settingsDialogVisibility, setSettingsDialogVisibility] = React.useState(null)
-  
+  const [loginFormVisibility, setLoginFormVisibility] = React.useState(null)
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isLoginFormOpen = Boolean(loginFormVisibility)
 
   useEffect(() => {
 
   });
+  
+  const handleCloseLogin = (event) => {
+    setLoginFormVisibility(false)
+  }
+
+  const handleLoginForm = (event) => {
+    setLoginFormVisibility(true)
+  }
 
   const handleOpenDialog = (event) => {
     setSettingsDialogVisibility(true)
@@ -127,8 +136,6 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-console.log('handleCloseDialog on myAppBar ', handleCloseDialog)
 
   const menuId = 'primary-search-account-menu';
 
@@ -209,21 +216,25 @@ console.log('handleCloseDialog on myAppBar ', handleCloseDialog)
 
       <AppBar position="static">
         <Toolbar>
+     
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            //onClick={handleProfileMenuOpen}
             onClick={handleMobileMenuOpen}
           >
             <MenuIcon />
           </IconButton>
+          
           {renderMobileMenu}
+          
           {renderMenu}
+          
           <Typography className={classes.title} variant="h4" noWrap>
            WORDFINDER
           </Typography>
+          
           {!settingsDialogVisibility ?(
                 <div></div>
             ): (
@@ -232,9 +243,10 @@ console.log('handleCloseDialog on myAppBar ', handleCloseDialog)
             >
                 Settings
             </FullScreenDialog>
-          )}
-          {
-          /*<div className={classes.search}>
+            )
+          }
+       
+          <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -250,41 +262,38 @@ console.log('handleCloseDialog on myAppBar ', handleCloseDialog)
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
+
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+
             <IconButton
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleLoginForm}
               color="inherit"
             >
+              <LoginIcon/>
             </IconButton>
-       
+          {!loginFormVisibility ?(
+                <div></div>
+            ): (
+              <LoginForm 
+                onClose={() => handleCloseLogin()}
+                open = {isLoginFormOpen}
+              />
+            )
+          }          
           </div>
-               
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-          */
-          }
         </Toolbar>
       </AppBar>
     </div>

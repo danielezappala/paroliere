@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useReducer } from 'react';
+import React, { useEffect, useContext, useReducer } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -30,8 +30,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
 function reducer(state,{field,value}){
   return {
     ...state,
@@ -45,8 +43,6 @@ export default function FullScreenDialog(props) {
 
   const classes = useStyles();
   const { globalState, globalDispatch } = useContext(GlobalState);
-
-  
 
   const [state, dispatch] = useReducer(reducer, 
     {
